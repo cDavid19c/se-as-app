@@ -1,8 +1,10 @@
- const express = require('express');
+const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 require('dotenv').config();
+
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -16,6 +18,8 @@ app.use(cors({
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.error('Error MongoDB:', err));
+
+app.use('/api/auth', authRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', modulo: 'palabras' });
