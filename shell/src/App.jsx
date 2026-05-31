@@ -14,7 +14,7 @@ function RutaProtegida({ children }) {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/admin" element={
+ <Route path="/admin/*" element={
   <RutaProtegida>
     <Admin />
   </RutaProtegida>
