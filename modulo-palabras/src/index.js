@@ -5,6 +5,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
+const categoriasRoutes = require('./routes/categorias');
+const nivelesRoutes = require('./routes/niveles');
+const flashcardsRoutes = require('./routes/flashcards');
 
 const app = express();
 
@@ -20,6 +23,9 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('Error MongoDB:', err));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/categorias', categoriasRoutes);
+app.use('/api/niveles', nivelesRoutes);
+app.use('/api/flashcards', flashcardsRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', modulo: 'palabras' });
