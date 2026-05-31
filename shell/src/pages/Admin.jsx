@@ -4,6 +4,7 @@ import Categorias from './admin/palabras/Categorias'
 import Niveles from './admin/palabras/Niveles'
 import Flashcards from './admin/palabras/Flashcards'
 import FlashcardForm from './admin/palabras/FlashcardForm'
+import Alumnos from './admin/Alumnos'
 
 export default function Admin() {
   const { user, logout } = useAuth()
@@ -14,6 +15,11 @@ export default function Admin() {
       <div style={{ width: '200px', background: '#1a1a2e', color: 'white', padding: '1rem' }}>
         <h3 style={{ marginBottom: '2rem' }}>Admin</h3>
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+
+          {/* General */}
+          <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: '#666', marginTop: '1rem', marginBottom: '0.5rem' }}>General</p>
+          <Link to="/admin/alumnos" style={{ color: 'white', paddingLeft: '1rem' }}>👨‍🎓 Alumnos</Link>
+
           {/* Palabras */}
           <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: '#666', marginTop: '1rem', marginBottom: '0.5rem' }}>Palabras</p>
           <Link to="/admin/palabras/categorias" style={{ color: 'white', paddingLeft: '1rem' }}>📁 Categorías</Link>
@@ -38,6 +44,7 @@ export default function Admin() {
       <div style={{ flex: 1, padding: '1rem' }}>
         <Routes>
           <Route index element={<h2>Bienvenido, {user?.nombre}</h2>} />
+          <Route path="alumnos" element={<Alumnos />} />
           <Route path="palabras/categorias" element={<Categorias />} />
           <Route path="palabras/niveles" element={<Niveles />} />
           <Route path="palabras/flashcards" element={<Flashcards />} />

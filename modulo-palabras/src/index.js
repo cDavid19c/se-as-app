@@ -9,6 +9,7 @@ const categoriasRoutes = require('./routes/categorias');
 const nivelesRoutes = require('./routes/niveles');
 const flashcardsRoutes = require('./routes/flashcards');
 const progresoRoutes = require('./routes/progreso');
+const alumnosRoutes = require('./routes/alumnos');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/categorias', categoriasRoutes);
 app.use('/api/niveles', nivelesRoutes);
 app.use('/api/flashcards', flashcardsRoutes);
 app.use('/api/progreso', progresoRoutes);
+app.use('/api/alumnos', alumnosRoutes);
 
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', modulo: 'palabras' });
