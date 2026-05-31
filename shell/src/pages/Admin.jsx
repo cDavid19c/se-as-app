@@ -2,6 +2,8 @@ import { useAuth } from '../context/AuthContext'
 import { Routes, Route, Link } from 'react-router-dom'
 import Categorias from './admin/Categorias'
 import Niveles from './admin/Niveles'
+import Flashcards from './admin/Flashcards'
+import FlashcardForm from './admin/FlashcardForm'
 
 export default function Admin() {
   const { user, logout } = useAuth()
@@ -29,6 +31,9 @@ export default function Admin() {
           <Route index element={<h2>Bienvenido, {user?.nombre}</h2>} />
           <Route path="categorias" element={<Categorias />} />
           <Route path="niveles" element={<Niveles />} />
+          <Route path="flashcards" element={<Flashcards />} />
+<Route path="flashcards/nueva" element={<FlashcardForm />} />
+<Route path="flashcards/:id/editar" element={<FlashcardForm />} />
         </Routes>
       </div>
     </div>
