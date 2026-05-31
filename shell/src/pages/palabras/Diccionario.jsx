@@ -9,15 +9,6 @@ export default function Diccionario() {
   const [filtroCat, setFiltroCat] = useState('')
   const [filtroPalabra, setFiltroPalabra] = useState('')
 
-  useEffect(() => {
-    cargarCategorias()
-  }, [])
-
-  useEffect(() => {
-    const delay = setTimeout(() => cargarFlashcards(), 300)
-    return () => clearTimeout(delay)
-  }, [filtroCat, filtroPalabra])
-
   const cargarFlashcards = async () => {
     const params = new URLSearchParams()
     if (filtroCat) params.append('categoria_id', filtroCat)
@@ -32,6 +23,15 @@ export default function Diccionario() {
     const data = await res.json()
     setCategorias(data)
   }
+
+  useEffect(() => {
+    cargarCategorias()
+  }, [])
+
+  useEffect(() => {
+    const delay = setTimeout(() => cargarFlashcards(), 300)
+    return () => clearTimeout(delay)
+  }, [filtroCat, filtroPalabra])
 
   return (
     <div style={{ padding: '2rem' }}>
@@ -58,7 +58,7 @@ export default function Diccionario() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '1rem' }}>
         {flashcards.map(fc => (
-          <Link key={fc._id} to={`/diccionario/${fc._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link key={fc._id} to={`/palabras/diccionario/${fc._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
             <div style={{ border: '1px solid #ddd', borderRadius: '8px', padding: '1rem', textAlign: 'center', cursor: 'pointer' }}>
               {fc.imagen_url
                 ? <img src={fc.imagen_url} alt={fc.palabra} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }} />

@@ -11,15 +11,6 @@ export default function Flashcards() {
   const [filtroNivel, setFiltroNivel] = useState('')
   const [filtroPalabra, setFiltroPalabra] = useState('')
 
-  useEffect(() => {
-    cargarCategorias()
-    cargarNiveles()
-  }, [])
-
-  useEffect(() => {
-    cargarFlashcards()
-  }, [filtroCat, filtroNivel, filtroPalabra])
-
   const cargarFlashcards = async () => {
     const params = new URLSearchParams()
     if (filtroCat) params.append('categoria_id', filtroCat)
@@ -42,6 +33,15 @@ export default function Flashcards() {
     setNiveles(data)
   }
 
+  useEffect(() => {
+    cargarCategorias()
+    cargarNiveles()
+  }, [])
+
+  useEffect(() => {
+    cargarFlashcards()
+  }, [filtroCat, filtroNivel, filtroPalabra])
+
   const handleEliminar = async (id) => {
     if (!confirm('¿Eliminar esta flashcard?')) return
     await fetch(`${API}/flashcards/${id}`, {
@@ -55,7 +55,7 @@ export default function Flashcards() {
     <div style={{ padding: '2rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
         <h2>Flashcards</h2>
-        <Link to="/admin/flashcards/nueva">
+        <Link to="/admin/palabras/flashcards/nueva">
           <button style={{ padding: '0.5rem 1rem' }}>+ Nueva flashcard</button>
         </Link>
       </div>
@@ -114,7 +114,7 @@ export default function Flashcards() {
                 {fc.video_url ? <a href={fc.video_url} target="_blank" rel="noreferrer">Ver</a> : '—'}
               </td>
               <td style={{ padding: '0.5rem' }}>
-                <Link to={`/admin/flashcards/${fc._id}/editar`}>
+                <Link to={`/admin/palabras/flashcards/${fc._id}/editar`}>
                   <button style={{ marginRight: '0.5rem' }}>Editar</button>
                 </Link>
                 <button onClick={() => handleEliminar(fc._id)} style={{ color: 'red' }}>

@@ -10,15 +10,15 @@ export default function Categorias() {
   const [editando, setEditando] = useState(null)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    cargarCategorias()
-  }, [])
-
   const cargarCategorias = async () => {
     const res = await fetch(`${API}/categorias`, { credentials: 'include' })
     const data = await res.json()
     setCategorias(data)
   }
+
+  useEffect(() => {
+    cargarCategorias()
+  }, [])
 
   const limpiarForm = () => {
     setNombre('')

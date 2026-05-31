@@ -21,10 +21,6 @@ export default function Juego() {
   const videoRef = useRef(null)
   const preloadRef = useRef(null)
 
-  useEffect(() => {
-    cargarSesion()
-  }, [])
-
   const cargarSesion = async () => {
     setCargando(true)
     const params = nivel_id ? `?nivel_id=${nivel_id}` : ''
@@ -33,6 +29,10 @@ export default function Juego() {
     setSesion(data)
     setCargando(false)
   }
+
+  useEffect(() => {
+    cargarSesion()
+  }, [nivel_id])
 
   const handleVoltear = () => {
     setVolteada(true)

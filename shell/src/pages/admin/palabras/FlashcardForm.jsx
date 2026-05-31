@@ -19,12 +19,6 @@ export default function FlashcardForm() {
   const [error, setError] = useState('')
   const [guardando, setGuardando] = useState(false)
 
-  useEffect(() => {
-    cargarCategorias()
-    cargarNiveles()
-    if (esEdicion) cargarFlashcard()
-  }, [])
-
   const cargarCategorias = async () => {
     const res = await fetch(`${API}/categorias`, { credentials: 'include' })
     const data = await res.json()
@@ -48,6 +42,12 @@ export default function FlashcardForm() {
     setVideoUrl(data.video_url || '')
   }
 
+  useEffect(() => {
+    cargarCategorias()
+    cargarNiveles()
+    if (esEdicion) cargarFlashcard()
+  }, [id, esEdicion])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
@@ -70,7 +70,7 @@ export default function FlashcardForm() {
       return setError(data.error)
     }
 
-    navigate('/admin/flashcards')
+    navigate('/admin/palabras/flashcards')
   }
 
   return (
@@ -160,7 +160,7 @@ export default function FlashcardForm() {
           <button type="submit" disabled={guardando} style={{ padding: '0.5rem 1.5rem' }}>
             {guardando ? 'Guardando...' : esEdicion ? 'Guardar cambios' : 'Crear flashcard'}
           </button>
-          <button type="button" onClick={() => navigate('/admin/flashcards')} style={{ padding: '0.5rem 1.5rem' }}>
+          <button type="button" onClick={() => navigate('/admin/palabras/flashcards')} style={{ padding: '0.5rem 1.5rem' }}>
             Cancelar
           </button>
         </div>

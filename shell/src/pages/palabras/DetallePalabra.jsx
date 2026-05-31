@@ -8,15 +8,15 @@ export default function DetallePalabra() {
   const navigate = useNavigate()
   const [flashcard, setFlashcard] = useState(null)
 
-  useEffect(() => {
-    cargarFlashcard()
-  }, [])
-
   const cargarFlashcard = async () => {
     const res = await fetch(`${API}/flashcards/${id}`, { credentials: 'include' })
     const data = await res.json()
     setFlashcard(data)
   }
+
+  useEffect(() => {
+    cargarFlashcard()
+  }, [id])
 
   if (!flashcard) return <p style={{ padding: '2rem' }}>Cargando...</p>
 

@@ -34,7 +34,7 @@ export default function Login() {
       } else {
         navigate('/inicio')
       }
-    } catch (err) {
+    } catch {
       setError('Error de conexión')
     }
   }

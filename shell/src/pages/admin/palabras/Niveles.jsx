@@ -12,11 +12,6 @@ export default function Niveles() {
   const [editando, setEditando] = useState(null)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    cargarNiveles()
-    cargarCategorias()
-  }, [])
-
   const cargarNiveles = async () => {
     const res = await fetch(`${API}/niveles`, { credentials: 'include' })
     const data = await res.json()
@@ -28,6 +23,11 @@ export default function Niveles() {
     const data = await res.json()
     setCategorias(data)
   }
+
+  useEffect(() => {
+    cargarNiveles()
+    cargarCategorias()
+  }, [])
 
   const limpiarForm = () => {
     setNombre('')
