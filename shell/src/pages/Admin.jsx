@@ -1,6 +1,7 @@
 import { useAuth } from '../context/AuthContext'
 import { Routes, Route, Link } from 'react-router-dom'
 import Categorias from './admin/Categorias'
+import Niveles from './admin/Niveles'
 
 export default function Admin() {
   const { user, logout } = useAuth()
@@ -27,6 +28,7 @@ export default function Admin() {
         <Routes>
           <Route index element={<h2>Bienvenido, {user?.nombre}</h2>} />
           <Route path="categorias" element={<Categorias />} />
+          <Route path="niveles" element={<Niveles />} />
         </Routes>
       </div>
     </div>
